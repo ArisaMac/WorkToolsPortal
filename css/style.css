@@ -26,6 +26,19 @@ h1 {
   width: 200px;
   padding: 1rem;
   text-align: center;
+  text-decoration: none; /* 下線を消す */
+  color: inherit;         /* 通常のテキスト色に合わせる */
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05); /* ホバーで少し拡大 */
+}
+
+.card h2 {
+  white-space: nowrap;         /* 👈 折り返し防止！ */
+  overflow: hidden;            /* 👈 はみ出た分を隠す */
+  text-overflow: ellipsis;     /* 👈 はみ出たら「…」表示 */
 }
 
 .card img {
