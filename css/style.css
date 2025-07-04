@@ -26,6 +26,19 @@ h1 {
   width: 200px;
   padding: 1rem;
   text-align: center;
+  text-decoration: none; /* 下線を消す */
+  color: inherit;         /* 通常のテキスト色に合わせる */
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05); /* ホバーで少し拡大 */
+}
+
+.card h2 {
+  white-space: nowrap;         /* 折り返し防止！ */
+  overflow: hidden;            /* はみ出た分を隠す */
+  text-overflow: ellipsis;     /* はみ出たら「…」表示 */
 }
 
 .card img {
@@ -34,4 +47,103 @@ h1 {
   border-radius: 8px;
   object-fit: contain;
 
+}
+
+
+.disabled-card {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-title,
+.card-text {
+  white-space: nowrap;
+}
+
+.card-title {
+  font-size: 1rem;
+}
+.card-text {
+  font-size: 0.85rem;
+}
+
+
+/* だんだん見えるようにする動き 
+   0.6秒かけて opacity: 0 → 1 に変化
+   透明 → 見える に変わる */
+.fade-in {
+  opacity: 0;    /* 最初は透明 */
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;  /* 最後は不透明 */
+  }
+}
+
+/* 横幅600px以下のとき
+   カードが幅いっぱいに広がる
+   スクロールバーが出ない */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
+
+/* OSやブラウザが
+   ダークモードのときだけ適用 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #eeeeee;
+  }
+
+  .card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  }
+
+  .card h2 {
+    color: #ffffff;
+  }
+}
+
+h1 {
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.form-control {
+  max-width: 120px;
+}
+
+.select2-container {
+  width: 250px !important;
+}
+
+/* Select2をBootstrap inputに似せる */
+.select2-container--default .select2-selection--single {
+  height: calc(2.3rem + 2px);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  display: flex;
+  align-items: center;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 1.5;
+  padding-left: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 100%;
+  top: 0;
+}
+
+/* セレクト幅固定 */
+.select2-container {
+  width: 250px !important;
+  margin-right: 1rem;
 }

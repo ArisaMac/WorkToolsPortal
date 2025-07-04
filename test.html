@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>和暦変換テスト</title>
+</head>
+<body>
+  <script type="module">
+    import { DataRepository } from './js/dataLoader.js';
+    import { WarekiConverter } from './js/converter.js';
+
+    (async () => {
+      // データをロード
+      const repo = new DataRepository();
+      const gengouData = await repo.loadGengouData();
+
+      // テスト用インスタンス
+      const converter = new WarekiConverter(gengouData);
+
+      // テストケース
+      console.log("=== 和暦→西暦 ===");
+      console.log(converter.toSeireki("平成", 1)); // 1989
+      console.log(converter.toSeireki("令和", 5)); // 2023（例）
+
+      console.log("=== 西暦→和暦 ===");
+      console.log(converter.toWareki(1989)); // { gengou: "平成", year: 1 }
+      console.log(converter.toWareki(2023)); // { gengou: "令和", year: 5 }
+
+      console.log("=== エラーテスト ===");
+
+      console.log("=== 西暦→和暦 ===");
+      console.log(JSON.stringify(converter.toWareki(1989))); 
+      console.log(JSON.stringify(converter.toWareki(2023))); 
+
+      try {
+        console.log(converter.toSeireki("存在しない元号", 1));
+      } catch (e) {
+        console.error("期待通りのエラー:", e.message);
+      }
+    })();
+  </script>
+</body>
+</html>
