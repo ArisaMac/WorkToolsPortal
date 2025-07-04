@@ -49,6 +49,25 @@ h1 {
 
 }
 
+
+.disabled-card {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-title,
+.card-text {
+  white-space: nowrap;
+}
+
+.card-title {
+  font-size: 1rem;
+}
+.card-text {
+  font-size: 0.85rem;
+}
+
+
 /* だんだん見えるようにする動き 
    0.6秒かけて opacity: 0 → 1 に変化
    透明 → 見える に変わる */
