@@ -38,14 +38,6 @@ export function validateSeirekiInput(year) {
   return null;
 }
 
-// /**
-//  * 和暦 → 西暦
-//  */
-// export function convertWarekiToSeireki(gengouName, year) {
-//   const gengou = gengouList.find(g => g.name === gengouName);
-//   return gengou.startYear + year - 1;
-// }
-
 /**
  * 西暦 → 和暦（複数該当も返す）
  */

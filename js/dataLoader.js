@@ -29,8 +29,6 @@ export async function loadEmperorData() {
   emperorList = data;
 }
 
-
-
 /**
  * データロードとキャッシュを担当するクラス
  */

@@ -1,3 +1,8 @@
+:root {
+  color-scheme: light;
+}
+
+/* 通常モード */
 body {
   font-family: sans-serif;
   background-color: #f0f8ff;
@@ -91,23 +96,6 @@ h1 {
   }
 }
 
-/* OSやブラウザが
-   ダークモードのときだけ適用 */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #eeeeee;
-  }
-
-  .card {
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  }
-
-  .card h2 {
-    color: #ffffff;
-  }
-}
 
 h1 {
   border-bottom: 2px solid #ccc;
@@ -146,4 +134,15 @@ h1 {
 .select2-container {
   width: 250px !important;
   margin-right: 1rem;
+}
+
+select,
+input {
+  width: 100%;
+  max-width: 100%;
+}
+
+.narrow-box {
+  max-width: 450px;
+  margin: 0 auto;
 }

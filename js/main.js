@@ -32,7 +32,6 @@ let converter;
   $('#gengouSelect').select2({
     placeholder: '元号を選択',
     allowClear: true,
-    width: '250px'
   });
 
   document.getElementById("convertToSeireki").addEventListener("click", handleWarekiToSeireki);

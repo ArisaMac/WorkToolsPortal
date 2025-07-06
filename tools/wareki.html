@@ -19,39 +19,43 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- 自作CSS（共通スタイル） -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/wareki.css">
+
   </head>
 
   <body class="p-4">
-    <div class="mx-auto" style="max-width:600px;">
-      <h1 class="mb-4 d-flex align-items-center justify-content-center gap-2">
+    <div class="mx-auto" style="max-width:450px;">
+      <h1 class="mb-4 d-flex justify-content-center gap-2">
         <i class="bi bi-calendar3"></i>
         和暦 ⇔ 西暦 変換ツール
       </h1>
 
-      <form id="warekiForm" role="form" class="vstack gap-3">
-        <!-- 元号 -->
-        <div class="border border-secondary rounded p-3 bg-light shadow-sm d-flex align-items-center flex-wrap">
-          <label for="gengouSelect" class="me-2 mb-0">元号</label>
-          <select id="gengouSelect" aria-label="元号を選択" ></select>
-          <input type="number" id="warekiYear" class="form-control ms-2" min="1" style="max-width: 100px;" />
-          <label for="warekiYear" class="ms-2 mb-0">年</label>
+      <form id="warekiForm" class="vstack gap-3">
+        <!-- 和暦エリア -->
+        <div class="input-area">
+          <div>
+            <label for="gengouSelect" >元号</label>
+            <select id="gengouSelect" aria-label="元号を選択" class="form-select "></select>
+          </div>
+          <input type="number" id="warekiYear" class="form-control" min="1" inputmode="numeric" pattern="[0-9]*"/>
+          <label for="warekiYear" class="col-form-label mb-0">年</label>
         </div>
 
         <!-- ボタン -->
-        <div class="d-flex gap-2 flex-wrap">
-          <button type="button" id="convertToSeireki" class="btn btn-primary" aria-label="和暦から西暦に変換">↓ 西暦へ</button>
-          <button type="button" id="convertToWareki" class="btn btn-secondary" aria-label="西暦から和暦に変換">↑ 和暦へ</button>
+        <div class="button-row">
+          <button type="button" id="convertToSeireki" class="btn btn-primary">↓ 西暦へ</button>
+          <button type="button" id="convertToWareki" class="btn btn-secondary">↑ 和暦へ</button>
         </div>
 
-        <!-- 西暦 -->
-        <div class="border border-primary rounded p-3 bg-light shadow-sm d-flex align-items-center flex-wrap">
-          <label for="seirekiYear" class="me-2 mb-0">西暦</label>
-          <input type="number" id="seirekiYear" class="form-control" style="max-width: 120px;" />
-          <label class="ms-2 mb-0">年</label>
+        <!-- 西暦エリア -->
+        <div class="input-area">
+          <label for="seirekiYear" >西暦</label>
+          <input type="number" id="seirekiYear" class="form-control" inputmode="numeric" pattern="[0-9]*"/>
+          <label class="mb-0">年</label>
         </div>
-
       </form>
+
 
       <!-- 結果表示 -->
       <div class="mt-3" id="result" aria-live="polite"></div>
