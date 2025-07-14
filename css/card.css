@@ -74,9 +74,20 @@
   }
 }
 
+/* デフォルトは改行しない */
+.break-sm {
+  display: inline;
+}
+
 /* スマホ対応 */
 @media (max-width: 600px) {
   .card {
     width: 100%;
   }
+  .break-sm {
+    display: block;
+  }
 }
+
+
+

@@ -26,20 +26,23 @@
 
   <body class="p-4">
     <div class="mx-auto" style="max-width:450px;">
-      <h1 class="mb-4 d-flex justify-content-center gap-2">
+      <h1 class="mb-4 text-center">
         <i class="bi bi-calendar3"></i>
-        和暦 ⇔ 西暦 変換ツール
+        和暦 ⇔ 西暦 <span class="break-sm">変換ツール</span>
       </h1>
+
 
       <form id="warekiForm" class="vstack gap-3">
         <!-- 和暦エリア -->
-        <div class="input-area">
-          <div>
-            <label for="gengouSelect" >元号</label>
-            <select id="gengouSelect" aria-label="元号を選択" class="form-select "></select>
+        <div class="input-area wareki-area">
+          <div class="d-flex align-items-center gap-2">
+            <label for="gengouSelect">元号</label>
+            <select id="gengouSelect" aria-label="元号を選択" class="form-select"></select>
           </div>
-          <input type="number" id="warekiYear" class="form-control" min="1" inputmode="numeric" pattern="[0-9]*"/>
-          <label for="warekiYear" class="col-form-label mb-0">年</label>
+          
+          <div class="d-flex align-items-center gap-2"> <input type="number" id="warekiYear" class="form-control" min="1" inputmode="numeric" pattern="[0-9]*"/>
+            <label for="warekiYear" class="col-form-label mb-0">年</label>
+          </div>
         </div>
 
         <!-- ボタン -->
