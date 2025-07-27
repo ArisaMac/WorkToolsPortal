@@ -35,10 +35,14 @@ export function renderEmperorEra(year, emperorList) {
 }
 
 /**
- * 入力欄とセレクトボックスをリセット
+ * 文字列に含まれる全角数字を半角数字に変換する
+ * @param {string} str - 変換したい文字列
+ * @returns {string} - 変換後の文字列
  */
-export function resetInputs() {
-  gengouSelect.value = '';
-  $('#gengouSelect').val(null).trigger('change');
-  document.getElementById("warekiYear").value = '';
+export function zenkakuToHankaku(str) {
+  return str.replace(/[０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
 }
+
+

@@ -1,32 +1,37 @@
-/* カードコンテナ */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
 
 /* カード */
 .card {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 200px;
-  padding: 1rem;
   text-align: center;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card h2 {
-  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none; /* Bootstrapのデフォルトの境界線を削除 */
+  /* overflow: hidden を追加して、子要素のはみ出しを制御 */
   overflow: hidden;
-  text-overflow: ellipsis;
+
+    /* h-100 の役割をここに定義 */
+  height: 100%; 
+  
+  /* pt-3 (padding-top: 1rem) の役割をここに定義 */
+  padding-top: 1rem; 
+}
+
+/* カードホバー時 */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* カード本文(.card-body)に直接パディングを指定し、内側の余白を確保します */
+.card-body {
+  /* カード本文の左右に余白を確保します */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* 子要素で overflow: hidden を使うために必要です */
+  overflow: hidden; 
 }
 
 /* カード上部の画像 */
@@ -34,32 +39,43 @@
   display: block;
   width: auto;         /* 自然な幅 */
   max-width: 100%;     /* はみ出さない */
-  height: 100px;       /* 高さ固定 */
+  height: 80px;       /* 高さ固定 */
   margin: 0 auto;      /* 中央寄せ */
   object-fit: contain;
   border-radius: 8px;
 }
 
-/* カード本文の画像（必要なら） */
-.card-body img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
+/* 無効化されたカード */
 .disabled-card {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.card-title {
-  font-size: 1rem;
+/* 無効化されたカードはホバー効果を無効に */
+.disabled-card:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-title, 
+.card-text {
+  /* 1. テキストを強制的に一行で表示させます */
   white-space: nowrap;
+  /* 2. 親要素(card-body)からはみ出したテキストを非表示にします */
+  overflow: hidden;
+  /* 幅を100%に設定して親要素に合わせます */
+  width: 100%;
+  display: block;
+  /* デフォルトのフォントサイズ */
+  font-size: 1rem;
+}
+
+.card-title {
+  font-weight: 600;
 }
 
 .card-text {
-  font-size: 0.85rem;
-  white-space: nowrap;
+  color: #6c757d;
 }
 
 /* フェードインアニメーション */

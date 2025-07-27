@@ -11,11 +11,11 @@ export const messages = {
     </div>
   `,
   LOADING_EMPEROR: `
-    <span class="text-danger fw-bold">治世データがまだ読み込み中です。少し待ってください。</span>
+    <span class="text-danger fw-bold">治世データがまだ読み込み中です。少々お待ちください。</span>
   `,
   FUTURE_YEAR_NOTE: `
     <br/>
-    <span class="text-warning">※未来の年です。参考値として表示しています。</span>
+    <span class="text-secondary">※未来の年です。参考値として表示しています。</span>
   `
 };
 

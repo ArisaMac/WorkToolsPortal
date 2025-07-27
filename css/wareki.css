@@ -2,79 +2,74 @@
    フォーム全体
    =============================== */
 
-   /* フォーム全体を幅固定・中央寄せ */
+   /* フォーム全体を幅固定・中央寄せ 
+      ** スマホ画面で見やすいように、フォーム全体の幅を決め、中央に配置 */
   #inputForm {
-    max-width: 375px; /* フォーム幅（必要に応じて調整） */
+    max-width: 375px; /* フォームがこれ以上大きくならないように幅の上限を決める */
     margin: 0 auto;   /* 中央寄せ */
-  }
-
-  /* ボタン行：中央寄せ・折り返し対応 */
-  #inputForm .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
   }
 
   
   /* ===============================
-   入力エリア共通
-   =============================== */
+     入力エリア共通
+     =============================== */
 
   /* 全ての入力エリアのベーススタイル */
   #inputForm .input-area {
-    border: 1px solid #ccc;
-    border-radius: 0.375rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    display: flex; 
+    border: 1px solid #ccc;  /* 枠線 */
+    border-radius: 0.375rem;  /* 角を少し丸くする */
+    padding: 1rem;            /* 内側の余白 */
+    background: #f8f9fa;     /* Bootstrapのlight背景色 */
+    display: flex;            /* 中の要素を横並びに配置するための最新の方法 */
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
   }
 
-  /* エリア内の一般的な入力欄の最大幅を制限 */
+  /* エリア内の一般的な入力欄の最大幅を制限 
+     テキストボックスが伸びすぎないように最大幅を決める */
   #inputForm .input-area .form-control {
-    max-width: 120px;
-  }  
+    max-width: 120px;          
+  }
+
+    /* 入力欄 */
+  #warekiYear,
+  #seirekiYear {
+    text-align: right;  /* 中の数字も右寄せ */
+    ime-mode: disabled; /* IMEを無効化 */
+  }
 
 
   /* ===============================
-   各入力エリアの詳細設定
-   =============================== */
+     各入力エリアの詳細設定
+     =============================== */   
+   /* 和暦エリア：子要素を縦並びにする */
+   #inputForm .input-area.wareki-area {
+     flex-direction: column; /* 子要素を縦に並べる */
+     align-items: flex-start; /* 子要素をデフォルトで左寄せにする */
+  }
   
-  /* 和暦エリア：子要素を縦並びにする */
-  #inputForm .input-area.wareki-area {
-    flex-direction: column; /* 子要素を縦に並べる */
-    align-items: flex-start; /* 子要素をデフォルトで左寄せにする */
-  }
-
   /* 和暦エリア内の「年の行」を右端に配置 */
-  #inputForm .wareki-area > div:nth-child(2) {
-    align-self: flex-end;
+  #inputForm .wareki-area .wareki-year-row {
+    width: 100%;             /* 行の幅を親要素いっぱいに広げる */
+    justify-content: flex-end; /* 中の要素（inputとlabel）を右端に寄せる */
   }
-
-  /* 和暦年の入力欄を右端に配置し、数字も右寄せ */
-  #inputForm .input-area input#warekiYear {
-    margin-left: auto;
-    text-align: right; /* 中の数字も右寄せ */
-  }
-
+    
   /* 和暦の「年」ラベルだけは、共通の幅指定を解除する */
   #inputForm .wareki-area label[for="warekiYear"] {
     width: auto;
   }
-
+  
+  
   /* 任意項目エリア内の入力欄だけ、最大幅の制限を解除 */
   #inputForm .optional-area  {
     background: #f0f8ff;   /* 他のエリアと同じ背景色に戻す */
   }
-
+  
   /* 任意項目エリア内の入力欄だけ、最大幅の制限を解除 */
   #inputForm .optional-area .form-control {
     max-width: none;
   }
-
 
   /* ===============================
     ラベル共通スタイル
@@ -94,12 +89,22 @@
 
   /* 目印を付けた主要ラベルの幅を統一する */
   .form-main-label {
-    width: 70px; /* 最終的な幅*/
+    width: 70px;            /* 最終的な幅*/
     text-align: left;
-    flex-shrink: 0; /* 念のため縮まないように */
+    flex-shrink: 0;         /* 念のため縮まないように */
     box-sizing: border-box; /* paddingを含めて幅を計算 */
-    padding-left: 0.15rem;   /* ★★★これを追加★★★ */
+    padding-left: 0.15rem;  /* ★★★これを追加★★★ */
   }
+
+  /* コメントのラベル */
+  .comment{
+    width: 100%;        /* コメントは幅いっぱいに */
+    text-align: left;   /* 左揃え */
+    font-size: 0.75rem; /* フォントサイズを少し小さく */
+    color: #6c757d;   /* Bootstrapのtext-mutedと同じ色 */
+    margin-top: 0.5rem; /* 上に少し余白を追加 */  
+  }
+
 
   /* ===============================
     その他
@@ -124,11 +129,21 @@
     top: 0;
   }
 
-  /* IMEを無効化 */
-  #warekiYear,
-  #seirekiYear {
-    ime-mode: disabled;
+  #result {    
+    /* 1. テキストを強制的に一行で表示します */
+    white-space: nowrap;
+
+    /* 2. はみ出した部分を隠します（JSで調整するため） */
+    overflow: hidden;
+
+    /* 3. デフォルトのフォントサイズ */
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
   }
+
+  
+
 
     /* 画面幅が350px以下の場合に適用 */
   @media (max-width: 500px) {
