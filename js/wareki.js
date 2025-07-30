@@ -21,7 +21,8 @@ class WarekiApp{
     convertToSeirekiBtn: document.getElementById("convertToSeireki"),
     convertToWarekiBtn: document.getElementById("convertToWareki"),
     currentAgeDisplay: document.getElementById('current-age-display'),
-    clearValue: document.getElementById('clear')
+    thisYearDisplay: document.getElementById('thisYearDisplay'),
+    clearValue: document.getElementById("clear") 
   }
 
   /**
@@ -33,6 +34,7 @@ class WarekiApp{
     this.elements.convertToSeirekiBtn.addEventListener("click", this.handleWarekiToSeireki.bind(this));
     this.elements.convertToWarekiBtn.addEventListener("click", this.handleSeirekiToWareki.bind(this));
     this.elements.clearValue.addEventListener("click", this.clearValue.bind(this));
+    this.elements.thisYearDisplay.addEventListener('click', this.thisYearDisplay.bind(this));
     this.elements.birthdateInput.addEventListener('input', this.updateCurrentAgeDisplay.bind(this));
     this.elements.seirekiInput.addEventListener('input', this.handleNumericInput.bind(this));
     this.elements.warekiInput.addEventListener('input', this.handleNumericInput.bind(this));
@@ -105,7 +107,7 @@ class WarekiApp{
       const note = (seireki > new Date().getFullYear()) ? messages.FUTURE_YEAR_NOTE : "";
 
       const mainText = `西暦 ${seireki} 年`;
-      return this._createResultHTML('bi-calendar-check-fill', mainText, note, ageText);
+      return this._createResultHTML('bi-calendar-check-fill', mainText, note, ageText, 'text-primary');
 
     });
 
@@ -180,6 +182,33 @@ class WarekiApp{
       displayElement.textContent = '';
     }
     
+  }
+
+  /**
+  * 今年の和暦と西暦を表示する
+  */
+  thisYearDisplay(){
+    // 1. 今日の日付から現在の西暦を取得
+    const today = new Date();
+    const currentSeireki = today.getFullYear();
+
+    // 2. 西暦入力欄に現在の西暦をセット
+    this.elements.seirekiInput.value = currentSeireki;
+
+    // 3. converterを使って現在の西暦を和暦に変換
+    const warekiResult = this.converter.toWareki(currentSeireki);
+
+    // 4. 変換結果が存在すれば、和暦の入力欄にもセット
+    if (warekiResult && warekiResult.length > 0) {
+      const currentWareki = warekiResult[0]; // 最新の元号を取得
+      
+      // 和暦の年をセット
+      this.elements.warekiInput.value = currentWareki.year;
+      
+      // Select2で初期化されたセレクトボックスの値を更新
+      $(this.elements.gengouSelect).val(currentWareki.gengou).trigger('change');
+    }
+
   }
 
   /**
@@ -297,10 +326,10 @@ class WarekiApp{
    * @returns {string} - 描画用のHTML文字列
    * @private
    */
-  _createResultHTML(iconClass, mainText, note, ageText) {
+  _createResultHTML(iconClass, mainText, note, ageText, colorClass = 'text-success') {
     return `
       <i class="bi ${iconClass} me-2"></i>
-      <span class="text-success fw-bold fs-4">${mainText}</span>
+      <span class="${colorClass} fw-bold fs-4">${mainText}</span>
       ${note}
       ${ageText}
     `;

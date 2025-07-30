@@ -35,6 +35,11 @@
 
       <form id="inputForm" class="vstack gap-3">
 
+        <!-- ボタン -->
+        <div class="d-flex gap-3">
+          <button type="button" id="thisYearDisplay" class="btn btn-primary w-100">今年は・・・</button>
+        </div>
+
         <!-- 和暦エリア -->
         <div class="input-area wareki-area ">
           <div class="d-flex align-items-center gap-3">
@@ -49,8 +54,8 @@
 
         <!-- ボタン -->
         <div class="d-flex gap-3">
-          <button type="button" id="convertToWareki" class="btn btn-primary w-100">↑ 和暦へ</button>
-          <button type="button" id="convertToSeireki" class="btn btn-primary w-100">↓ 西暦へ</button>
+          <button type="button" id="convertToWareki" class="btn btn-success w-100">↑ 和暦へ変換</button>
+          <button type="button" id="convertToSeireki" class="btn btn-primary w-100">↓ 西暦へ変換</button>
         </div>
 
         <!-- 西暦エリア -->
@@ -75,7 +80,7 @@
             </div>
 
             <div>
-              <label for="birthdate" class="comment">生年月日も入力してボタンをクリックすると… </label>
+              <label for="birthdate" class="comment">生年月日も入力して変換ボタンをクリックすると… </label>
             </div>
           </div>          
         </div>
