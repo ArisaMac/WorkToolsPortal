@@ -1,0 +1,60 @@
+
+  body {
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background-color: #dbbb7c;
+  }
+
+  /* バーとラベルのコンテナ */
+  .bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end; /* バーを下に、ラベルをさらにその下に配置 */
+      flex-grow: 1;
+      margin: 0 1px;
+      height: 100%; /* 親要素の高さを100%にする */
+  }
+
+  .bar {
+      width: 100%;
+      transition: height 0.3s ease, background-color 0.3s ease;
+      background-color: #60a5fa; /* デフォルトの色をここに設定 (blue-400) */
+  }
+
+  .bar-label {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #334155; /* slate-700 */
+      flex-shrink: 0; /* ラベルが縮まないようにする */
+      transition: color 0.3s ease;
+  }
+
+  .comparing {
+      background-color: #fbbf24; /* amber-400 */
+  }
+
+  /* 交換中の色を追加 */
+  .swapping {
+      background-color: #a855f7; /* purple-500 */
+  }
+
+  .sorted {
+      background-color: #4ade80; /* green-400 */
+  }
+
+  /* .bar.sortedを持つラッパー内のラベルを対象にするように修正 */
+  .bar-wrapper:has(.bar.sorted) .bar-label {
+      color: #16a34a; /* green-600 */
+      font-weight: 500;
+  }
+
+  /* ラベルの色を変更するためのクラス */
+  .legend-color {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.25rem;
+      display: inline-block;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+  }
+

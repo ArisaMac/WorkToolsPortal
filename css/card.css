@@ -1,7 +1,6 @@
 
 /* カード */
 .card {
-  background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
@@ -17,6 +16,18 @@
   
   /* pt-3 (padding-top: 1rem) の役割をここに定義 */
   padding-top: 1rem; 
+}
+
+.card_b1 {
+  background-color: #70e0ef;
+}
+
+.card_b2 {
+  background-color: #9f8f7c;
+}
+
+.card_b3 {
+  background-color: #6a8359;
 }
 
 /* カードホバー時 */
@@ -72,10 +83,11 @@
 
 .card-title {
   font-weight: 600;
+  color: #000000;
 }
 
 .card-text {
-  color: #6c757d;
+  color: #000000;
 }
 
 /* フェードインアニメーション */

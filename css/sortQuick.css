@@ -1,0 +1,36 @@
+
+body {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.bar {
+    transition: height 0.3s ease, background-color 0.3s ease;
+    margin: 0 2px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-grow: 1;
+    z-index: 10; /* バーが枠線より手前に来るように */
+}
+
+.bar-value {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    user-select: none;
+}
+
+/* .partition-boundary クラスは削除 */
+.pivot { background-color: #f59e0b !important; }
+.comparing { background-color: #8b5cf6 !important; }
+.smaller { background-color: #3b82f6 !important; }
+.sorted { background-color: #22c55e !important; }
+.controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

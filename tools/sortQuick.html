@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイックソート可視化ツール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/sortQuick.css">
+
+</head>
+<body class="bg-slate-50 text-gray-800 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-slate-800">クイックソート・ビジュアライザー</h1>
+            <p class="text-lg text-slate-500 mt-2">「分割統治」アルゴリズムの世界を体験しよう</p>
+        </header>
+
+        <!-- 説明パネル -->
+        <div id="explanation-panel" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8 flex justify-between items-center min-h-[120px]">
+            <div class="flex-grow pr-6">
+                <p id="explanation-text" class="text-slate-600 text-lg w-full">こんにちは！クイックソートを学んでいきましょう。<br>まずは下のボタンから「ソート開始」または「チュートリアル」を選択してください。</p>
+            </div>
+            <div class="text-center flex-shrink-0 bg-slate-100 p-4 rounded-lg w-40">
+                <h3 class="text-base font-semibold text-orange-600 whitespace-nowrap">現在のピボット</h3>
+                <p id="current-pivot-value" class="text-5xl font-mono font-bold mt-1 text-slate-800">--</p>
+            </div>
+        </div>
+
+        <!-- 可視化エリア -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200 relative">
+            <div id="visualizer" class="w-full h-[40vh] flex items-end justify-center relative">
+                <!-- バーと枠線はここに動的に生成されます -->
+            </div>
+             <!-- フッターエリア -->
+            <div class="mt-4 pt-4 border-t border-slate-200">
+                <!-- 凡例 -->
+                <div id="legend" class="flex items-center justify-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-full" style="background-color: #f59e0b;"></div><span class="text-sm text-slate-600">ピボット</span></div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-full" style="background-color: #8b5cf6;"></div><span class="text-sm text-slate-600">比較対象</span></div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-full" style="background-color: #3b82f6;"></div><span class="text-sm text-slate-600">ピボットより小</span></div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-full" style="background-color: #22c55e;"></div><span class="text-sm text-slate-600">ソート済み</span></div>
+                    <div class="flex items-center gap-2"><div class="w-auto px-1 h-4 border-2 border-red-500 rounded"></div><span class="text-sm text-slate-600">処理範囲</span></div>
+                </div>
+                 <!-- 再生コントロール -->
+                <div id="playback-controls" class="playback-controls controls flex items-center justify-center gap-4 mt-4 bg-slate-100 rounded-lg p-2 hidden">
+                     <div class="flex items-center gap-2 mr-auto">
+                        <label for="speed-slider" class="font-medium text-slate-700 text-sm">速度:</label>
+                        <input id="speed-slider" type="range" min="50" max="1000" value="800" class="w-24 cursor-pointer">
+                    </div>
+                    <button id="prev-step-btn" class="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-lg shadow-sm transition duration-300">前のステップへ</button>
+                    <button id="next-step-btn" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">次のステップへ</button>
+                    <button id="play-pause-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 w-28">自動再生</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 下部コントロール -->
+        <div class="mt-8 text-center">
+            <div id="bottom-controls" class="controls inline-flex justify-center gap-4">
+                 <button id="generate-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300">リセット/新規生成</button>
+                 <button id="sort-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300">ソート開始</button>
+            </div>
+        </div>
+        
+        <!-- 機能のための非表示要素 -->
+        <div class="hidden">
+            <input id="size-slider" type="range" min="10" max="20" value="15">
+        </div>
+    </div>
+
+    <script type="module" src="../js/sortQuick.js"></script>
+
+</body>
+</html>
